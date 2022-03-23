@@ -34,7 +34,7 @@ public class Test {
 
         aStar.display();
         aStar.process();
-        aStar.displayScores();
+        //aStar.displayScores();
         aStar.displaySolution();
 
 
