@@ -104,7 +104,7 @@ public class AStar {
                 updateCostIfNeeded(current, t, current.finalCost + V_H_COST*upSpaces(current));
             }
 
-            if (current.j + 1 < grid[0].length) {
+            if (current.j + downSpaces(current) < grid[0].length) {
                 t = grid[current.i][current.j + downSpaces(current)];
                 updateCostIfNeeded(current, t, current.finalCost + V_H_COST*downSpaces(current));
             }
@@ -171,7 +171,7 @@ public class AStar {
                 } else if (i == endI && j == endJ) {
                     System.out.print("DE  "); //destination cell
                 } else if (grid[i][j] != null) {
-                    System.out.printf("%-3d ", 0);
+                    System.out.printf("%-3s ", ".");
                 } else {
                     System.out.print("BL  "); //block cell
                 }
@@ -219,7 +219,7 @@ public class AStar {
                     } else if (i == endI && j == endJ) {
                         System.out.print("DE  "); //destination cell
                     } else if (grid[i][j] != null) {
-                        System.out.printf("%-3s ", grid[i][j].solution ? "X" : "0");//cham- print x if solution true otherwise 0
+                        System.out.printf("%-3s ", grid[i][j].solution ? "X" : ".");//cham- print x if solution true otherwise 0
                     } else {
                         System.out.print("BL  "); //block cell
                     }

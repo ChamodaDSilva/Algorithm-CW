@@ -9,7 +9,7 @@ public class Test {
     public static int ei;
     public static int ej;
     public static int [][] blockList;
-    public static String fileName="maze30_4.txt";
+    public static String fileName="maze10_5.txt";
 
     public static void main(String[] args) throws IOException {
 
@@ -36,7 +36,7 @@ public class Test {
 
         aStar.display();
         aStar.process();
-        //aStar.displayScores();
+        aStar.displayScores();
         aStar.displaySolution();
 
 
@@ -54,7 +54,7 @@ public class Test {
     }
     public static int numOfColumns() throws FileNotFoundException {
         int numOfColumns = 0;
-        File file=new File("maze30_5.txt");
+        File file=new File(fileName);
         Scanner input=new Scanner(file);
         numOfColumns=input.nextLine().split("(?!^)").length;
         return numOfColumns;
