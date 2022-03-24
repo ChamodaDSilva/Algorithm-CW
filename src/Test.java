@@ -9,9 +9,11 @@ public class Test {
     public static int ei;
     public static int ej;
     public static int [][] blockList;
+    public static String fileName="maze30_4.txt";
 
     public static void main(String[] args) throws IOException {
-        File file=new File("maze30_5.txt");
+
+        File file=new File(fileName);
         Scanner input=new Scanner(file);
         arr=new String[numOfRows()][numOfColumns()];
 
@@ -44,7 +46,7 @@ public class Test {
 
     }
     public static int numOfRows() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("maze30_5.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
         int lines = 0;
         while (reader.readLine() != null) lines++;
         reader.close();
