@@ -94,27 +94,72 @@ public class AStar {
 
             Cell t;
 
-            if (current.i - 1 >= 0) {
-                t = grid[current.i - 1][current.j];
-                updateCostIfNeeded(current, t, current.finalCost + V_H_COST);
+            if (current.i - leftSpaces(current) >= 0) {
+                t = grid[current.i - leftSpaces(current)][current.j];
+                updateCostIfNeeded(current, t, current.finalCost + (V_H_COST*leftSpaces(current)));
             }
 
-            if (current.j - 1 >= 0) {
-                t = grid[current.i][current.j - 1];
-                updateCostIfNeeded(current, t, current.finalCost + V_H_COST);
+            if (current.j - upSpaces(current) >= 0) {
+                t = grid[current.i][current.j - upSpaces(current)];
+                updateCostIfNeeded(current, t, current.finalCost + V_H_COST*upSpaces(current));
             }
 
             if (current.j + 1 < grid[0].length) {
-                t = grid[current.i][current.j + 1];
-                updateCostIfNeeded(current, t, current.finalCost + V_H_COST);
+                t = grid[current.i][current.j + downSpaces(current)];
+                updateCostIfNeeded(current, t, current.finalCost + V_H_COST*downSpaces(current));
             }
 
-            if (current.i + 1 < grid.length) {
-                t = grid[current.i + 1][current.j];
-                updateCostIfNeeded(current, t, current.finalCost + V_H_COST);
+            if (current.i + rightSpaces(current) < grid.length) {
+                t = grid[current.i + rightSpaces(current)][current.j];
+                updateCostIfNeeded(current, t, current.finalCost + V_H_COST*rightSpaces(current));
             }
         }
     }
+    public int leftSpaces(Cell current){
+        int ci=current.i;
+        int cj=current.j;
+        int count=0;
+        while(ci-1>=0 && grid[ci-1][cj]!=null){
+            count++;
+            ci--;
+        }
+
+        return count;
+    }
+    public int upSpaces(Cell current){
+        int ci=current.i;
+        int cj=current.j;
+        int count=0;
+        while(cj-1>=0 && grid[ci][cj-1]!=null){
+            count++;
+            cj--;
+        }
+
+        return count;
+    }
+    public int rightSpaces(Cell current){
+        int ci=current.i;
+        int cj=current.j;
+        int count=0;
+        while(ci+1<grid[0].length && grid[ci+1][cj]!=null){
+            count++;
+            ci++;
+        }
+
+        return count;
+    }
+    public int downSpaces(Cell current){
+        int ci=current.i;
+        int cj=current.j;
+        int count=0;
+        while(cj+1<grid[0].length && grid[ci][cj+1]!=null){
+            count++;
+            cj++;
+        }
+
+        return count;
+    }
+
 
     public void display() {
         System.out.println("Grid :");
@@ -174,7 +219,7 @@ public class AStar {
                     } else if (i == endI && j == endJ) {
                         System.out.print("DE  "); //destination cell
                     } else if (grid[i][j] != null) {
-                        System.out.printf("%-3s ", grid[i][j].solution ? "X" : "0");
+                        System.out.printf("%-3s ", grid[i][j].solution ? "X" : "0");//cham- print x if solution true otherwise 0
                     } else {
                         System.out.print("BL  "); //block cell
                     }
@@ -187,8 +232,8 @@ public class AStar {
         }
     }
 
-    public static void main(String[] args) {
-        AStar aStar = new AStar(5,5, 0, 0, 3, 2,
+    public static void main(String[] args) {//  cham0   -i -down j -up
+        AStar aStar = new AStar(5,5, 2, 4, 0, 0,
                 new int[][]{
                         {0,4}, {2,2}, {3,1}, {3,3}, {2,1}, {2,3}
                 });
