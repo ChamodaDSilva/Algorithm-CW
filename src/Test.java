@@ -9,7 +9,7 @@ public class Test {
     public static int ei;
     public static int ej;
     public static int [][] blockList;
-    public static String fileName="maze10_5.txt";
+    public static String fileName="example_CW.txt";
 
     public static void main(String[] args) throws IOException {
 
@@ -37,7 +37,8 @@ public class Test {
         aStar.display();
         aStar.process();
         aStar.displayScores();
-        aStar.displaySolution();
+        //aStar.displaySolution();
+        aStar.displaySolutionCorrect();
 
 
 

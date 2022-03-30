@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 public class AStar {
@@ -94,28 +95,28 @@ public class AStar {
 
             Cell t;
 
-            if (current.i - leftSpaces(current) >= 0) {
-                t = grid[current.i - leftSpaces(current)][current.j];
-                updateCostIfNeeded(current, t, current.finalCost + (V_H_COST*leftSpaces(current)));
+            if (current.i - numUpSlider(current) >= 0) {
+                t = grid[current.i - numUpSlider(current)][current.j];
+                updateCostIfNeeded(current, t, current.finalCost + (V_H_COST* numUpSlider(current)));
             }
 
-            if (current.j - upSpaces(current) >= 0) {
-                t = grid[current.i][current.j - upSpaces(current)];
-                updateCostIfNeeded(current, t, current.finalCost + V_H_COST*upSpaces(current));
+            if (current.j - numLeftSlider(current) >= 0) {
+                t = grid[current.i][current.j - numLeftSlider(current)];
+                updateCostIfNeeded(current, t, current.finalCost + V_H_COST* numLeftSlider(current));
             }
 
-            if (current.j + downSpaces(current) < grid[0].length) {
-                t = grid[current.i][current.j + downSpaces(current)];
-                updateCostIfNeeded(current, t, current.finalCost + V_H_COST*downSpaces(current));
+            if (current.j + numRightSlider(current) < grid[0].length) {
+                t = grid[current.i][current.j + numRightSlider(current)];
+                updateCostIfNeeded(current, t, current.finalCost + V_H_COST* numRightSlider(current));
             }
 
-            if (current.i + rightSpaces(current) < grid.length) {
-                t = grid[current.i + rightSpaces(current)][current.j];
-                updateCostIfNeeded(current, t, current.finalCost + V_H_COST*rightSpaces(current));
+            if (current.i + numDownSlider(current) < grid.length) {
+                t = grid[current.i + numDownSlider(current)][current.j];
+                updateCostIfNeeded(current, t, current.finalCost + V_H_COST* numDownSlider(current));
             }
         }
     }
-    public int leftSpaces(Cell current){
+    public int numUpSlider(Cell current){
         int ci=current.i;
         int cj=current.j;
         int count=0;
@@ -126,7 +127,7 @@ public class AStar {
 
         return count;
     }
-    public int upSpaces(Cell current){
+    public int numLeftSlider(Cell current){
         int ci=current.i;
         int cj=current.j;
         int count=0;
@@ -137,7 +138,7 @@ public class AStar {
 
         return count;
     }
-    public int rightSpaces(Cell current){
+    public int numDownSlider(Cell current){
         int ci=current.i;
         int cj=current.j;
         int count=0;
@@ -148,7 +149,7 @@ public class AStar {
 
         return count;
     }
-    public int downSpaces(Cell current){
+    public int numRightSlider(Cell current){
         int ci=current.i;
         int cj=current.j;
         int count=0;
@@ -158,6 +159,59 @@ public class AStar {
         }
 
         return count;
+    }
+    public void displaySolutionCorrect() {
+        ArrayList<Cell> solutionList = new ArrayList<>();//cells in right order
+        if (closedCells[endI][endJ]) {
+//            we track back the path
+            System.out.println("Path :");
+            Cell current = grid[endI][endJ];
+            solutionList.add(0,current);
+            grid[current.i][current.j].solution = true;
+
+            while (current.parent != null) {
+                solutionList.add(0,current.parent);
+                grid[current.parent.i][current.parent.j].solution = true;
+                current = current.parent;
+            }
+            Cell temp=null;
+            for (Cell cell:solutionList) {
+                if(temp == null) {//first node
+                    System.out.println("Start at      ("+(cell.j+1)+","+(cell.i+1)+")");//change i and j while printing to more visualisation
+                }else{
+                    if(temp.i>cell.i){
+                        System.out.println("Move up to    ("+(cell.j+1)+","+(cell.i+1)+")");
+                    }else if(temp.i<cell.i){
+                        System.out.println("Move down to  ("+(cell.j+1)+","+(cell.i+1)+")");
+                    }else if(temp.j>cell.j){
+                        System.out.println("Move left to  ("+(cell.j+1)+","+(cell.i+1)+")");
+                    }else if(temp.j<cell.j){
+                        System.out.println("Move right to ("+(cell.j+1)+","+(cell.i+1)+")");
+                    }
+                }
+                temp=cell;
+
+            }
+            System.out.println("Done!\n");
+
+            for (int i = 0; i < grid.length; i++) {
+                for (int j = 0; j < grid[i].length; j++) {
+                    if (i == startI && j == startJ) {
+                        System.out.print("S   "); //source cell
+                    } else if (i == endI && j == endJ) {
+                        System.out.print("F   "); //destination cell
+                    } else if (grid[i][j] != null) {
+                        System.out.printf("%-3s ", grid[i][j].solution ? "X" : ".");//cham- print x if solution true otherwise 0
+                    } else {
+                        System.out.print("0   "); //block cell
+                    }
+                }
+                System.out.println();
+            }
+            System.out.println();
+        } else {
+            System.out.println("No possible path");
+        }
     }
 
 
