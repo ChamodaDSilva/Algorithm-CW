@@ -9,7 +9,7 @@ public class Test {
     public static int ei;
     public static int ej;
     public static int [][] blockList;
-    public static String fileName="maze10_4.txt";
+    public static String fileName="example_CW.txt";
 
     public static void main(String[] args) throws IOException {
 

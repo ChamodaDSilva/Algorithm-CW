@@ -187,24 +187,25 @@ public class AStar {
                 current = current.parent;
             }
             Cell temp=null;
+            int stepCount=0;//to count the number of steps gone to the solution
             for (Cell cell:solutionList) {
                 if(temp == null) {//first node
-                    System.out.println("Start at      ("+(cell.j+1)+","+(cell.i+1)+")");//change i and j while printing to more visualisation
+                    System.out.println(++stepCount+". Start at      ("+(cell.j+1)+","+(cell.i+1)+")");//change i and j while printing to more visualisation
                 }else{
                     if(temp.i>cell.i){
-                        System.out.println("Move up to    ("+(cell.j+1)+","+(cell.i+1)+")");
+                        System.out.println(++stepCount+". Move up to    ("+(cell.j+1)+","+(cell.i+1)+")");
                     }else if(temp.i<cell.i){
-                        System.out.println("Move down to  ("+(cell.j+1)+","+(cell.i+1)+")");
+                        System.out.println(++stepCount+". Move down to  ("+(cell.j+1)+","+(cell.i+1)+")");
                     }else if(temp.j>cell.j){
-                        System.out.println("Move left to  ("+(cell.j+1)+","+(cell.i+1)+")");
+                        System.out.println(++stepCount+". Move left to  ("+(cell.j+1)+","+(cell.i+1)+")");
                     }else if(temp.j<cell.j){
-                        System.out.println("Move right to ("+(cell.j+1)+","+(cell.i+1)+")");
+                        System.out.println(++stepCount+". Move right to ("+(cell.j+1)+","+(cell.i+1)+")");
                     }
                 }
                 temp=cell;
 
             }
-            System.out.println("Done!\n");
+            System.out.println(++stepCount+". Done!\n");
 
             for (int i = 0; i < grid.length; i++) {
                 for (int j = 0; j < grid[i].length; j++) {
