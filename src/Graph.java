@@ -8,11 +8,11 @@ import java.util.*;
 // directed graph using adjacency
 // list representation
 class Graph {
-    private int V; // No. of vertices
+    private final int V; // No. of vertices
 
     // Array  of lists for
     // Adjacency List Representation
-    private LinkedList<Integer> adj[];
+    private final LinkedList<Integer>[] adj;
 
     // Constructor
     @SuppressWarnings("unchecked") Graph(int v)
@@ -30,7 +30,7 @@ class Graph {
     }
 
     // A function used by DFS
-    void DFSUtil(int v, boolean visited[])
+    void DFSUtil(int v, boolean[] visited)
     {
         // Mark the current node as visited and print it
         visited[v] = true;
@@ -54,7 +54,7 @@ class Graph {
         // Mark all the vertices as
         // not visited(set as
         // false by default in java)
-        boolean visited[] = new boolean[V];
+        boolean[] visited = new boolean[V];
 
         // Call the recursive helper
         // function to print DFS
@@ -63,7 +63,7 @@ class Graph {
     }
 
     // Driver Code
-    public static void main(String args[])
+    public static void main(String[] args)
     {
         Graph g = new Graph(4);
 
