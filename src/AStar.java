@@ -123,6 +123,9 @@ public class AStar {
         while(ci-1>=0 && grid[ci-1][cj]!=null){
             count++;
             ci--;
+            if(ci==endI && cj==endJ){
+                return count;
+            }
         }
 
         return count;
@@ -134,6 +137,9 @@ public class AStar {
         while(cj-1>=0 && grid[ci][cj-1]!=null){
             count++;
             cj--;
+            if(ci==endI && cj==endJ){
+                return count;
+            }
         }
 
         return count;
@@ -145,6 +151,9 @@ public class AStar {
         while(ci+1<grid[0].length && grid[ci+1][cj]!=null){
             count++;
             ci++;
+            if(ci==endI && cj==endJ){
+                return count;
+            }
         }
 
         return count;
@@ -156,6 +165,9 @@ public class AStar {
         while(cj+1<grid[0].length && grid[ci][cj+1]!=null){
             count++;
             cj++;
+            if(ci==endI && cj==endJ){
+                return count;
+            }
         }
 
         return count;
