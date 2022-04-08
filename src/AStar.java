@@ -249,13 +249,13 @@ public class AStar {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
                 if (i == startI && j == startJ) {
-                    System.out.print("S   "); //source cell
+                    System.out.print("S"); //source cell
                 } else if (i == endI && j == endJ) {
-                    System.out.print("F   "); //destination cell
+                    System.out.print("F"); //destination cell
                 } else if (grid[i][j] != null) {
-                    System.out.printf("%-3s ", ".");
+                    System.out.print(".");
                 } else {
-                    System.out.print("0   "); //block cell
+                    System.out.print("0"); //block cell
                 }
             }
             System.out.println();
