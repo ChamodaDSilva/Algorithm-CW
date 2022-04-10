@@ -2,8 +2,6 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 public class AStar {
-    //    costs for diagonal and vertical / horizontal moves
-     public static final int DIAGONAL_COST = 14;
     public static final int V_H_COST = 10;
     //    Cell of our grid
     private final Cell[][] grid;
@@ -245,7 +243,6 @@ public class AStar {
 
     public void display() {
         System.out.println("Grid :");
-
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
                 if (i == startI && j == startJ) {
@@ -262,6 +259,5 @@ public class AStar {
         }
         System.out.println();
     }
-
 
 }
