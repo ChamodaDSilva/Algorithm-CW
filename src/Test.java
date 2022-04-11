@@ -9,7 +9,7 @@ public class Test {
     public static int ei;//finish position i index
     public static int ej;//finish position j index
     public static int [][] blockList;//indexes of block list - {{index}{i,j}}
-    public static String fileName="maze10_1.txt";//puzzle file name
+    public static String fileName="example_CW.txt";//puzzle file name
 
     public static void main(String[] args) throws IOException {
 
@@ -28,9 +28,17 @@ public class Test {
         AStar aStar = new AStar(numOfColumns(),numOfRows(), si, sj, ei, ej, blockList);
 
         aStar.display();//displaying the puzzle
+
+        long startTime = System.nanoTime();//This saves the
         aStar.process();//doing the process
+        long endTime = System.nanoTime();//This records the endtime
+
         aStar.displayScores();//displaying the scores
         aStar.displaySolutionCorrect();//displaying the solution
+
+        long duration = (endTime - startTime);//This calculates
+        //System.out.println("Elapsed time = " + duration +" nanoseconds");
+        System.out.println("Elapsed time = " + (double)duration/1000000 +" milliseconds");
 
     }
 

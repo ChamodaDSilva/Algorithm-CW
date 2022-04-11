@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 public class AStar {
-    public static final int V_H_COST = 10;
+    public static final int V_H_COST = 10;// distance of a cell to cel
     //    Cell of our grid
     private final Cell[][] grid;
     //    We define a priority queue for open cells
-//    Open Cells : the set of nodes to be evaluated
-//    we put cells with the lowest cost in first
+    //    Open Cells : the set of nodes to be evaluated
+    //    we put cells with the lowest cost in first
     private final PriorityQueue<Cell> openCells;
     //    Closed Cells : the set of nodes already evaluated
     private final boolean[][] closedCells;
@@ -20,13 +20,13 @@ public class AStar {
         grid = new Cell[width][height];
         closedCells = new boolean[width][height];
         openCells = new PriorityQueue<>((Cell c1, Cell c2) -> {
-            return c1.finalCost < c2.finalCost ? -1 : c1.finalCost > c2.finalCost ? 1 : 0;
+            return c1.finalCost < c2.finalCost ? 1 : c1.finalCost > c2.finalCost ? -1 : 0;//give the priority for lowest final cost -should check -1 and 1
         });
 
         startCell(si, sj);
         endCell(ei, ej);
 
-//        init heuristic
+        // init heuristic cost of all cells
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
                 grid[i][j] = new Cell(i, j);
@@ -37,7 +37,7 @@ public class AStar {
 
         grid[startI][startJ].finalCost = 0;
 
-//        we put the blocks on the grid
+        // we put the blocks on the grid
         for (int i = 0; i < blocks.length; i++) {
             addBlockOnCell(blocks[i][0], blocks[i][1]);
         }
